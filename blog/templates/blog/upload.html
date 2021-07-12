@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h2 class="border-bottom mb-4">Upload</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input class="btn btn-secondary btn-sm mt-1 mb-5" type="file" name="document">
+    <button class="btn btn-secondary btn-sm mt-1 mb-5" type="submit">Upload file</button>
+  </form>
+
+  <h2 class="border-bottom mb-4">Convert</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button class="btn btn-secondary btn-sm mt-1 mb-1" type="submit" name="run_script">Convert</button>
+  </form>
+
+  {% if url %}
+    <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
+    <!-- <p>Converted file: <a href="media/converted_sample.csv">Converted File</a></p> -->
+  {% endif %}
+{% endblock %}
